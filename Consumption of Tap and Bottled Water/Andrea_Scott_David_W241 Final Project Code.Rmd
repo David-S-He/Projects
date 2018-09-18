@@ -1,0 +1,671 @@
+---
+title: 'W241 Final Project: Perception of Tap Water and Consumption of Bottled Water'
+author: "Andrea, Scott, David"
+date: "8/14/2018"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Load libraries
+library(ggplot2)
+library(dplyr)
+library(lmtest)
+library(sandwich)
+library(stargazer)
+library(gridExtra)
+library(pwr)
+```
+##I. Objective and Overview 
+Clean tap water is ubiquitous and easily accessible by any person living in a prosperous country. l. However, the general population might not be as aware of its benefits and overall cleanliness- with most choosing to purchase and drink bottled water. Oftentimes, individuals carry certain perspectives on tap water, which could affect their drinking habits, as well as their overall confidence in the tap water in their area. 
+
+The team wanted to study people's understanding and perception of tap water further. We wanted to test if providing a population with some baseline education on the benefits of tap water could change the bottled water to tap water consumption ratio or their overall sentiment about tap water. Should we present people with supplementary information on tap water, would there be a significant change in their attitudes towards tap water? 
+
+### Statement of the Team's Hypothesis
+The null hypothesis is: Informing people of tap water quality will not influence public perception of tap water and bottled water consumption.
+
+The alternative hypothesis is: Informing people of tap water quality will increase public perception of tap water and decrease bottled water consumption.
+
+##II. Experimental Design and Methodology
+
+1. Run a pilot for ~10 people to see if the process of surveying, presenting treatment videos and placebo videos is straightforward enough. The team also wanted to see if there would be any feedback on the phrasing of questions to ensure utmost clarity. 
+2. Gather 30-35 individuals each using social networks, professional networks, friends and family. 
+3. Randomize and group these subjects into treatment, control and placebo group. 
+4. Conduct a pre-treatment and post treatment survey over the course of two weeks. The survey contains questions about their perception of tap water and their drinking habits. 
+5. Data Gathering, Cleaning and Analysis of Results. 
+
+We created the survey through Qualtrics, which is explained in more detail in the next sections. The team agreed to distribute the surveys to the participants via individual email links, which was a convenient function from Qualtrics. The email body requested the participants to answer the survey truthfully, not to share their experience with anyone, and assured the participants that their email addresses would not be used for any other manner except for this experiment. All three groups received the same exact email.
+
+###A. Pilot Study
+A pilot study was performed to identify errors that would negatively impact the results of the study. We selected 10 participants through our social network, and asked them for feedback on the question clarity, experiment process, and overall satisfaction with participating. We were able to retrieve extremely beneficial feedback which was implemented into the full-scale experiment. The pilot study participants were not invited to participate in the experiment.
+
+###B. Subject Selection Criteria
+We performed a power analysis to determine the sample size required for this experiment. Based on a power level of 0.8, a cohen’s d value of 0.5 to indicate medium effect, and a significance level of 95%, we determined that each group would require approximately 64 participants. Unfortunately, due to the limitations of our social network and the class timeline, we were only able to recruit 35-36 participants for each group. This would lead to an underpowered experiment. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+pwr.t.test(power = .80, d = 0.5,sig.level = 0.05,alternative = "two.sided")
+```
+
+The subjects were selected from our personal network (colleagues, friends, etc.) Each author was tasked with recruiting 35 participants, we were able to recruit 107 participants. The participants were then assigned to treatment, control, and placebo groups. The randomization procedure is described in following sections. 
+
+###C. Pre-treatment and Post-treatment 
+The Pre-treatment and Post-treatment surveys were practically identical, with the exception of the first two questions (Gender and Age) excluded in the Post-survey, and the potential treatment or placebo videos excluded in the Post-treatment survey. The surveys were sent five days apart to the participants, allowing sufficient time (under class constraints) for the treatment effects to develop.  The participants were given three days to complete each survey, they received friendly follow-up emails every day they did not complete the surveys.
+
+###D. A Note on Spillover Effects 
+One of the key concerns that the team had was susceptibility to spillover effects, that is subjects’ opinions and conversations about the study and the questions causing a significant impact on the experiment that we are conducting. In an effort to prevent this from occurring within our experiment, the team made sure to do the following things: 
+
+The team made an effort to gather participants who were not family members or who could easily converse about the videos. 
+The email copy that we crafted was neutral in tone to ensure that we did not reveal anything about the experiment.
+The email also explicitly requests that the topics and questions within the survey are not discussed with anyone in the next few weeks to prevent swaying the opinions of people they may know who might be part of the pool. 
+
+Now that we’ve sufficiently tackled a potential pitfall of this experiment, we can now move on to discussing the survey conducted, as well as the videos we had selected for the experiment. 
+
+###E. Treatment, Control, and Placebo
+The treatment group, control group, and placebo group were all asked to answer a short survey regarding tap water and their opinion on the matter. Each participant was emailed an individual link where once they clicked it, they were directed to the survey which contained the questions below. 
+
+1) What is your gender?
+2) What is your age? 
+3) How much water do you drink per day?
+4) How much bottled water do you consume per day? 
+5) How much do you enjoy drinking tap water? 
+6) Which has better quality (tap or bottled water)?
+7) Are you confident in the quality of tap water?
+8) Are you confident in the quality of bottled water? 
+
+Questions 3 and 4 were fill in the blank questions using 4 different units of measurement, gallons, cups, liters, and ounces. The participant was asked to answer in their preferred unit of measurement. Question 5 showed a picture of a emoji face, with the ability to scroll down to make the face sad, and the ability to scroll up to make the face happy. The different faces provided results numerically from 1-5, where 5 is if they really enjoyed drinking tap water, and 1 where they did not enjoy it at all. Question 6 was a multiple choice question, which allowed the participant to chose either tap water, bottled water, or same quality. Question 7 and 8 were displayed on a slide grading scale (A+ to F), with provided numerical results from 1 to 13, which 1 being F and 13 being A+. 
+
+The treatment and placebo groups were provided a video to watch at the end of the survey, the control group did not see any video. 
+
+###F. Treatment and Control Video 
+We made sure to select short and digestible treatment and control videos to ensure that our subjects wouldn't lose interest. The treatment video(https://www.youtube.com/watch?v=8MGsb7SrW_s&feature=youtu.be) was a 4-minute newsclip which highlights the benefits of tap water. This video discussed in detail the quality, regulation, and treatment process tap was goes through before being served to the public. It also compares tap water and bottled water quality and concludes the difference to be negligible. 
+The placebo video(https://www.youtube.com/watch?v=zw_isTcSKSM&feature=youtu.be) didn't really have to do anything with tap water, but was water related in some way. We chose this video because it was a UC Berkeley informational video about water efficiency in agriculture, we thought it would not have any treatment effects, and was brief enough to keep the viewers focus.
+
+
+##III. Random Assignments, Cleaning, Processing and Initial Analysis 
+The group started by randomizing the emails and contact information that the team compiled to ensure that their was no bias in how subjects were assigned into the CONTROL, TREATMENT AND PLACEBO groups. You can see the code below: 
+
+###A. Randomize assignments
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Random Assignment
+df <- read.csv("~/Desktop/MIDS/W241_Experiments/Final Project/Project Emails.csv")
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results=FALSE}
+table(df["From"])
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+emails <- as.vector(df["Email"])
+#dim(df)
+assignment <- sample(c(rep("control", 35), rep("treatment", 35), rep("placebo", 35)))
+assignment
+
+df$new_assignment <- assignment
+
+```
+
+
+###B. Cleaning
+
+Next, once we had assigned the participants into groups  and had run the experiment over a period of two weeks, we pulled the data from Qualtrics and did some data cleaning and manipulation that did the following:  
+1) Removed NA's within the data set and changed them to 0 for easy calculation.  
+2) Merged csvs to make a master csv and therefore a cleaner dataframe to pull from.   
+3) Conversion of data point types for easy calculations..
+4) Some standard conversions of water measurements like ounces, gallons, liters and cups. We chose to standardize to ounces. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+setwd("~/Desktop/MIDS/W241_Experiments/Final Project/")
+
+df_control <- read.csv("Control.csv")
+df_control <- df_control[-c(1:2),]
+df_control$assignment <- "control"
+df_control$post <- 0
+
+df_placebo <- read.csv("placebo.csv")
+df_placebo <- df_placebo[-c(1:2),]
+df_placebo$assignment <- "placebo"
+df_placebo$post <- 0
+
+df_treatment <- read.csv("Treatment.csv")
+df_treatment <- df_treatment[-c(1:2),]
+df_treatment$assignment <- "treatment"
+df_treatment$post <- 0
+
+df_followup <- read.csv("followup_with_assignment.csv")
+df_followup$post <- 1
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Pre-treatment column name cleanup
+df_complete <- rbind(df_control, df_placebo, df_treatment)
+names(df_complete)[names(df_complete) == 'Q1'] <- "Gender"
+names(df_complete)[names(df_complete) == 'Q2'] <- "Age"
+names(df_complete)[names(df_complete) == 'Q5'] <- "Tap water enjoyment"
+names(df_complete)[names(df_complete) == 'Q6'] <- "Tap vs Bottle"
+names(df_complete)[names(df_complete) == 'Q7'] <- "Tap water confidence"
+names(df_complete)[names(df_complete) == 'Q8'] <- "Bottle water confidence"
+
+# Follow up column cleanup
+names(df_followup)[names(df_followup) == 'Q4'] <- "Tap water enjoyment"
+names(df_followup)[names(df_followup) == 'Q5'] <- "Tap vs Bottle"
+names(df_followup)[names(df_followup) == 'Q6'] <- "Tap water confidence"
+names(df_followup)[names(df_followup) == 'Q7'] <- "Bottle water confidence"
+names(df_followup)[names(df_followup) == 'Q8'] <- "Watched Video"
+```
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# 1 cups to 8 ounces
+# 1 liter to 33.8 ounces
+# 1 gallon to 128 ounces
+#df_complete_test <- df_complete
+
+df_complete[is.na(df_complete)] <- 0
+df_complete[df_complete==""] <- 0
+    
+df_complete$Q3_2 <- as.numeric(as.character(df_complete$Q3_2))
+df_complete$Q3_2 <- ifelse(df_complete$Q3_2 < 0.1, 0, df_complete$Q3_2)
+df_complete$Q3_2[is.na(df_complete$Q3_2)] <- 0
+
+df_complete$Q3_3 <- as.numeric(as.character(df_complete$Q3_3))
+df_complete$Q3_3 <- ifelse(df_complete$Q3_3 < 0.1, 0, df_complete$Q3_3)
+
+df_complete$Q3_4 <- as.numeric(as.character(df_complete$Q3_4))
+df_complete$Q3_4 <- ifelse(df_complete$Q3_4 < 0.1, 0, df_complete$Q3_4)
+
+df_complete$Q3_5 <- as.numeric(as.character(df_complete$Q3_5))
+df_complete$Q3_5 <- ifelse(df_complete$Q3_5 < 0.1, 0, df_complete$Q3_5)
+
+df_complete$total_ounces_total <- 8*df_complete$Q3_2 + 33.8*df_complete$Q3_3 + 
+    1*df_complete$Q3_4 + 128*df_complete$Q3_5
+
+df_complete$Q4_1 <- as.numeric(as.character(df_complete$Q4_1))
+df_complete$Q4_1 <- ifelse(df_complete$Q4_1 < 0.1, 0, df_complete$Q4_1)
+
+df_complete$Q4_2 <- as.numeric(as.character(df_complete$Q4_2))
+df_complete$Q4_2 <- ifelse(df_complete$Q4_2 < 0.1, 0, df_complete$Q4_2)
+
+df_complete$Q4_3 <- as.numeric(as.character(df_complete$Q4_3))
+df_complete$Q4_3 <- ifelse(df_complete$Q4_3 < 0.1, 0, df_complete$Q4_3)
+
+df_complete$Q4_4 <- as.numeric(as.character(df_complete$Q4_4))
+df_complete$Q4_4 <- ifelse(df_complete$Q4_4 < 0.1, 0, df_complete$Q4_4)
+
+df_complete$bottled_ounces_total <- 8*df_complete$Q4_1 + 33.8*df_complete$Q4_2 +
+    1*df_complete$Q4_3 + 128*df_complete$Q4_4
+    
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# 1 cups to 8 ounces
+# 1 liter to 33.8 ounces
+# 1 gallon to 128 ounces
+#df_followup_test <- df_followup
+
+df_followup[is.na(df_followup)] <- 0
+df_followup[df_followup==""] <- 0
+
+df_followup$Q2_2 <- as.numeric(as.character(df_followup$Q2_2))
+df_followup$Q2_2 <- ifelse(df_followup$Q2_2 < 0.1, 0, df_followup$Q2_2)
+
+
+df_followup$Q2_3 <- as.numeric(as.character(df_followup$Q2_3))
+df_followup$Q2_3 <- ifelse(df_followup$Q2_3 < 0.1, 0, df_followup$Q2_3)
+
+df_followup$Q2_4 <- as.numeric(as.character(df_followup$Q2_4))
+df_followup$Q2_4 <- ifelse(df_followup$Q2_4 < 0.1, 0, df_followup$Q2_4)
+
+df_followup$Q2_5 <- as.numeric(as.character(df_followup$Q2_5))
+df_followup$Q2_5 <- ifelse(df_followup$Q2_5 < 0.1, 0, df_followup$Q2_5)
+
+
+df_followup$total_ounces_Total= 8*df_followup$Q2_2 + 33.8*df_followup$Q2_3 + 
+    1*df_followup$Q2_4 + 128*df_followup$Q2_5
+
+df_followup$Q3_1 <- as.numeric(as.character(df_followup$Q3_1))
+df_followup$Q3_1 <- ifelse(df_followup$Q3_1 < 0.1, 0, df_followup$Q3_1)
+
+df_followup$Q3_2 <- as.numeric(as.character(df_followup$Q3_2))
+df_followup$Q3_2 <- ifelse(df_followup$Q3_2 < 0.1, 0, df_followup$Q3_2)
+df_followup$Q3_2[is.na(df_followup$Q3_2)] <- 0
+
+df_followup$Q3_3 <- as.numeric(as.character(df_followup$Q3_3))
+df_followup$Q3_3 <- ifelse(df_followup$Q3_3 < 0.1, 0, df_followup$Q3_3)
+
+df_followup$Q3_4 <- as.numeric(as.character(df_followup$Q3_4))
+df_followup$Q3_4 <- ifelse(df_followup$Q3_4 < 0.1, 0, df_followup$Q3_4)
+
+df_followup$bottled_ounces_total <- 8*df_followup$Q3_1 + 33.8*df_followup$Q3_2 + 
+    1*df_followup$Q3_3 + 128*df_followup$Q3_4
+```
+
+###C. Visualizations
+Finally, as another step of our cleaning and initial analysis, we wanted to run a few visualizations using histograms to further understand the responses of our survey-takers. You can see some of the examples below. The following graphs that we rendered focus on the answers gathered for questions around the consumption of bottled water and tap water confidence, pre and post treatment.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.width=6}
+a <- ggplot(aes(x = bottled_ounces_total), data = df_complete) +
+    geom_histogram(bins = 15) +
+    ggtitle("Bottled Water Consumption in Ounces, Pre") +
+    theme(plot.title = element_text(hjust=0.5, size=10),
+          axis.text.x = element_text(size=8)) +
+    xlab("Bottled Water Consumption, in Ounces") +
+    ylab("Count")
+    
+
+b <- ggplot(aes(x = bottled_ounces_total), data = df_followup) +
+    geom_histogram(bins = 15) +
+    ggtitle("Bottled Water Consumption in Ounces, Post") +
+    theme(plot.title = element_text(hjust=0.5, size=10),
+          axis.text.x = element_text(size=8)) +
+    xlab("Bottled Water Consumption, in Ounces") +
+    ylab("Count")
+
+df_complete$`Tap water confidence` <- as.numeric(df_complete$`Tap water confidence`)
+df_followup$`Tap water confidence` <- as.numeric(df_followup$`Tap water confidence`)
+
+c <- ggplot(aes(x = `Tap water confidence`), data = df_complete) + 
+    geom_histogram(bins = 8) +
+    ggtitle("Tap Water Confidence, Pre") +
+    theme(plot.title = element_text(hjust=0.5, size=10),
+          axis.text.x = element_text(size=8)) +
+    xlab("Confidence") +
+    ylab("Count")
+
+d <- ggplot(aes(x = `Tap water confidence`), data = df_followup) + 
+    geom_histogram(bins = 8) +
+    ggtitle("Tap Water Confidence, Post") +
+    theme(plot.title = element_text(hjust=0.5, size=10),
+          axis.text.x = element_text(size=8)) +
+    xlab("Confidence") +
+    ylab("Count")
+
+grid.arrange(a, b, c, d, nrow=2)
+```
+
+We also plotted the demographics of the sample population (Age and Gender). 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=4}
+age_summary <- df_complete %>%
+    group_by(assignment, Age) %>%
+    summarise(n=n())
+
+ggplot(aes(assignment, n), data = age_summary) +
+    geom_bar(aes(fill=Age), stat = "identity", position=position_dodge()) +
+    ggtitle("Age Distribution by Group Assignment") +
+    xlab("Assignment") +
+    ylab("Count") +
+    theme(plot.title = element_text(hjust=0.5))
+```
+
+The Age Distribution by Group Assignment figure shows that the most sampled age group is from 25 to 34. This is due to the fact that the people we sampled are from people we know, who have similar age as us.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, fig.height=3}
+gender_summary <- df_complete %>%
+    group_by(assignment, Gender) %>%
+    summarise(n=n())
+
+ggplot(data = gender_summary, aes(assignment, n)) +
+    geom_bar(aes(fill=Gender), stat = "identity", position = position_dodge()) +
+    ggtitle("Gender Distribution by Group Assignment") +
+    xlab("Assignment") +
+    ylab("Count") +
+    theme(plot.title = element_text(hjust=0.5))
+```
+
+The Gender Distribution by Group Assignment figure shows the variation of gender for the treatment, control, and placebo groups. We didn’t notice any one-sided heavy groups, therefore we proceeded with this variation.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Merging pre and post data
+df_pre <- subset(df_complete, select=c(12, 18, 19, 28, 29, 30, 31, 32, 33, 34, 35))
+names(df_pre) = c("RecipientEmail", "Gender", "Age","Pre Tap water enjoyment", "Pre Tap vs Bottle", "Pre Tap water confidence",
+                  "Pre Bottle water confidence", "assignment", "post", "Pre total_ounces_total","Pre bottled_ounces_total")
+
+df_post <- subset(df_followup, select=c(12, 26:34))
+names(df_post) <- c("RecipientEmail", "Post Tap water enjoyment", "Post Tap vs Bottle", "Post Tap water confidence", "Post Bottle water confidence", "Watched Video", "assignment", "post", "Post total_ounces_total","Post bottled_ounces_total")
+
+df_merged <- merge(df_pre, df_post, by="RecipientEmail", all = TRUE)
+```
+
+###D. Initial Analysis
+After re-formatting the data, we will now perform initial analysis to observe potential significant results. 
+
+The metrics that the team wanted to focus on were the bottled water consumption metric, as well as the metrics that dealt with the individual's perception of tap water, like their confidence in it and their enjoyment. 
+
+###E. CACE & ATE
+For this experiment, we defined compliers as subjects that answered both the Pre-treatment survey and the Post-survey. There were 83 compliers out of the initial 94 people who responded to one of the surveys. Non-compliers were considered subjects who did not take one of the surveys. We excluded the subjects who did not complete either survey. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Analysis
+control <- df_merged[df_merged$assignment.x == "control",]
+control <- control[1:(dim(control)[1]-3),]
+
+treat <- df_merged[df_merged$assignment.x == "treatment",]
+treat <- treat[1:(dim(treat)[1]-3),]
+
+placebo <- df_merged[df_merged$assignment.x == "placebo",]
+placebo <- placebo[1:(dim(placebo)[1]-3),]
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+compliers <- df_merged[!is.na(df_merged$`Post bottled_ounces_total`) & !is.na(df_merged$`Pre bottled_ounces_total`),]
+
+tmp2 <- c("Post Tap water confidence", "Pre Tap water confidence", "Post Tap water enjoyment", "Pre Tap water enjoyment")
+compliers[tmp2] <- sapply(compliers[tmp2], as.character)
+compliers[tmp2] <- sapply(compliers[tmp2], as.numeric)
+
+# Individual effect
+compliers$consumption_treatment_effect <- compliers$`Post bottled_ounces_total` - compliers$`Pre bottled_ounces_total`
+
+compliers$confidence_treatment_effect <- compliers$`Post Tap water confidence` - compliers$`Pre Tap water confidence`
+
+compliers$enjoyment_treatment_effect <- compliers$`Post Tap water enjoyment`-compliers$`Pre Tap water enjoyment`
+```
+
+We then wanted to run a CACE or Average Treatment effect on the compliers. While at first glance there seemed to have been an positive effect on the consumption of bottled water, a simple t-test shows that the results weren't significant. 
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+CACE <- mean(compliers$consumption_treatment_effect[compliers$assignment.x=="treatment"]) - 
+    mean(compliers$consumption_treatment_effect[compliers$assignment.x == "control"])
+CACE # CACE is the average treatment effect of the compliers
+
+t.test(compliers$consumption_treatment_effect[compliers$assignment.x=="treatment"], 
+       compliers$consumption_treatment_effect[compliers$assignment.x=="control"], conf.level = 0.95)
+```
+
+The team also looked at the Perception of Tap Water and the Enjoyment of it. The treatment effect on the perception of tap water is slightly negative, while the effect on the enjoyment of tap water is slightly positive. Both effects are statistically insignificant.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+CACE_perception <- mean(compliers$confidence_treatment_effect[compliers$assignment.x=="treatment"]) - 
+    mean(compliers$confidence_treatment_effect[compliers$assignment.x == "control"])
+CACE_perception
+t.test(compliers$confidence_treatment_effect[compliers$assignment.x=="treatment"], 
+       compliers$confidence_treatment_effect[compliers$assignment.x == "control"], conf.level = .95)
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+CACE_enjoyment <- mean(compliers$enjoyment_treatment_effect[compliers$assignment.x=="treatment"]) - 
+    mean(compliers$enjoyment_treatment_effect[compliers$assignment.x == "control"])
+CACE_enjoyment
+
+t.test(compliers$enjoyment_treatment_effect[compliers$assignment.x=="treatment"], 
+       compliers$enjoyment_treatment_effect[compliers$assignment.x == "control"], conf.level = 0.95)
+```
+
+To take things further, the team ran a CACE on the Placebo and Treatment. This time, we took the question of whether or not they watched the accompanying video into account as another level of compliance.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+compliers$`Watched Video`[compliers$RecipientEmail == "Sy.qingwen@gmail.com"] <- "Yes"
+#dim(compliers[compliers$assignment.x == "control",])
+#dim(compliers[compliers$assignment.x == "treatment" & compliers$`Watched Video` == "Yes",])
+#dim(compliers[compliers$assignment.x == "treatment" & compliers$`Watched Video` != "Yes",])
+#dim(compliers[compliers$assignment.x == "placebo" & compliers$`Watched Video` == "Yes",])
+#dim(compliers[compliers$assignment.x == "placebo" & compliers$`Watched Video` != "Yes",])
+
+a <- mean(compliers[compliers$assignment.x == "control",]$`Post bottled_ounces_total` -
+         compliers[compliers$assignment.x == "control",]$`Pre bottled_ounces_total`)
+
+b <- mean(compliers[compliers$assignment.x == "treatment" & compliers$`Watched Video` == "Yes",]$`Post bottled_ounces_total` -
+         compliers[compliers$assignment.x == "treatment" & compliers$`Watched Video` == "Yes",]$`Pre bottled_ounces_total`)
+
+c <- mean(compliers[compliers$assignment.x == "treatment" & compliers$`Watched Video` != "Yes",]$`Post bottled_ounces_total` -
+         compliers[compliers$assignment.x == "treatment" & compliers$`Watched Video` != "Yes",]$`Pre bottled_ounces_total`)
+
+d <- mean(compliers[compliers$assignment.x == "placebo" & compliers$`Watched Video` == "Yes",]$`Post bottled_ounces_total` -
+         compliers[compliers$assignment.x == "placebo" & compliers$`Watched Video` == "Yes",]$`Pre bottled_ounces_total`)
+
+e <- mean(compliers[compliers$assignment.x == "placebo" & compliers$`Watched Video` != "Yes",]$`Post bottled_ounces_total` -
+         compliers[compliers$assignment.x == "placebo" & compliers$`Watched Video` != "Yes",]$`Pre bottled_ounces_total`)
+
+Treatment_Assignment <- c("Control", "Treatment", "Treatment", "Placebo", "Placebo")
+Treated <- c("No", "Yes", "No", "Yes", "No")
+N <- c(27, 26, 1, 26, 4)
+Mean_bottled_consumption <- c(a, b, c, d, e)
+
+summary_table <- data.frame(Treatment_Assignment,Treated, N, Mean_bottled_consumption)
+summary_table
+```
+
+What we saw here was a CACE Placebo of about -5.43 and a CACE of Treatment of 5.41. This is quite interesting because the placebo was meant to measure the potential outcomes of those who are untreated, and we expected this to have no impact (positive or negative) on the participants. Also, the treatment video increased bottled water consumption, which is the opposite of what we expected, since the video was selected to highlight the benefits of drinking tap water.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ITT = -4.82 - (-0.1062963)
+ITT_D = 26/30 - 0
+
+ITT/ITT_D #CACE of Placebo = -5.438889
+
+ITT = 5.1 - (-0.1062963)
+ITT_D = 26/27 - 0
+
+ITT/ITT_D #CACE of Treatment = 5.406538
+```
+
+We thought the CACE of placebo being negative was unexpected, so we decided to plot the distributions of changes for all assigned groups. One thing that stands out is one particular extreme outlier. This outlier is sitting near -230; this, combined with our small sample sizes, means that our placebo's ITT down by a significant amount. Had we removed this outlier, the placebo would have had a much smaller CACE, close to 0.
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+ggplot(data = compliers, aes(x = assignment.x, y = consumption_treatment_effect)) +
+    geom_boxplot() +
+    ggtitle("Bottled Water Consumption Changes in Ounces, by Assigned Groups") +
+    xlab("Assignment") +
+    ylab("Consumption in oz") +
+    theme(plot.title = element_text(hjust=0.5))
+    
+```
+
+##IV. Modeling
+###A. Difference in Difference Treatment Effect
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# Convert dataset to long, for DiD regression
+lookup <- subset(df_pre, select=c("RecipientEmail", "Gender", "Age"))
+df_postDiD <- merge(lookup, df_post, by="RecipientEmail")
+
+df_preDiD <- df_pre
+names(df_preDiD)[c(4, 5, 6, 7, 10, 11)] <- c("Tap water enjoyment", "Tap vs Bottle", 
+                                          "Tap water confidence", "Bottle Water confidence",
+                                          "total_ounces_total", "bottled_ounces_total")
+tmp <- c("Tap water enjoyment", "Tap vs Bottle", "Tap water confidence", "Bottle Water confidence","total_ounces_total", "bottled_ounces_total")
+
+df_preDiD[tmp] <- sapply(df_preDiD[tmp], as.character.numeric_version)
+
+
+names(df_postDiD)[c(4, 5, 6, 7, 11, 12)] <- c("Tap water enjoyment", "Tap vs Bottle", 
+                                        "Tap water confidence", "Bottle Water confidence",
+                                        "total_ounces_total", "bottled_ounces_total")
+
+df_postDiD[tmp] <- sapply(df_postDiD[tmp], as.character.numeric_version)
+
+
+
+df_preDiD$`Watched Video` <- ""
+
+df_DiD <- bind_rows(df_preDiD, df_postDiD)
+
+df_DiD$TreatedDummy <- ifelse(df_DiD$assignment == "control" | df_DiD$assignment == "placebo", 0, 1)
+
+```
+
+
+Because of our pre/post survey design, we can conduct Difference in Difference estimation with linear regression. This is useful because we waited a few days between the pre-treatment and post-treatment surveys, and using this technique allows us to mitigate the effects of extraneous factors that could have taken place during the 4 day waiting period. 
+
+####i. Bottled Water Consumption
+The following model shows the difference-in-difference on the Bottled Water Consumption of the treatment group and non-treatment groups (control, placebo). Treated is a dummy binary variable that indicates group assignment (1 for treatment, 0 for non-treatment). Post is a binary variable that indicates whether the measured consumption was pre-treatment, or post-treatment (1 for post, 0 for pre). We also included the interaction term Treated * post to measure the difference-in-difference.
+
+$$ \text{Consumption} = B_0 + B_1Treated + B_2post + B_3Treated * post $$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+# DiD for outcome variables, bottled consumption and tap water confidence
+
+DiD_model1a <- lm(bottled_ounces_total ~ TreatedDummy, data = df_DiD)
+DiD_model1b <- lm(bottled_ounces_total ~ TreatedDummy + post, data = df_DiD)
+DiD_model1c <- lm(bottled_ounces_total ~ TreatedDummy + post + TreatedDummy*post, data = df_DiD)
+
+DiD_model1a.se <- sqrt(diag(vcovHC(DiD_model1a)))
+DiD_model1b.se <- sqrt(diag(vcovHC(DiD_model1b)))
+DiD_model1c.se <- sqrt(diag(vcovHC(DiD_model1c)))
+
+stargazer(DiD_model1a, DiD_model1b, DiD_model1c, se = list(DiD_model1a.se, DiD_model1b.se, DiD_model1c.se), float=FALSE, header = FALSE,
+          title = "Difference in Difference for Bottle Water Consumption in Ounces, Pre/Post Treatment", 
+          covariate.labels = c("Treated", "After", "Treated x After"), 
+          dep.var.labels = "Consumption of Bottled Water, in Ounces")
+
+```
+
+The estimate coefficient for the interaction term is the DiD estimate. In this regression, the DiD for bottle water consumption pre and post treatment was $\beta_3$ = 11.428, and the result was not statistically significant. 
+
+####ii. Tap Water Confidence
+
+The following model shows the difference-in-difference on Tap Water Confidence of the treatment group and non-treatment groups (control, placebo). Once again, Treated is a dummy binary variable that indicates group assignment (1 for treatment, 0 for non-treatment). Post is a binary variable that indicates whether the measured consumption was pre-treatment, or post-treatment (1 for post, 0 for pre). We also included the interaction term Treated * post to measure the difference-in-difference.
+
+$$ \text{Confidence} = B_0 + B_1TreatedDummy + B_2post + B_3TreatedDummy * post $$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+DiD_model2a <- lm(`Tap water confidence` ~ TreatedDummy, data = df_DiD)
+DiD_model2b <- lm(`Tap water confidence` ~ TreatedDummy + post, data = df_DiD)
+DiD_model2c <- lm(`Tap water confidence` ~ TreatedDummy + post + TreatedDummy*post, data = df_DiD)
+
+DiD_model2a.se <- sqrt(diag(vcovHC(DiD_model2a)))
+DiD_model2b.se <- sqrt(diag(vcovHC(DiD_model2b)))
+DiD_model2c.se <- sqrt(diag(vcovHC(DiD_model2c)))
+
+stargazer(DiD_model2a, DiD_model2b, DiD_model2c, se=list(DiD_model2a.se, DiD_model2b.se, DiD_model2c.se), float=FALSE, header = FALSE,
+          title = "Difference in Difference for Tap Water Confidence, Pre/Post Treatment", 
+          covariate.labels = c("Treated", "After", "Treated x After"), 
+          dep.var.labels = "Tap Water Confidence")
+```
+
+The estimate coefficient for the interaction term is the DiD estimate. In this regression, the DiD for Tap Water Confidence pre and post treatment was $\beta_3$ = -0.267, and the result was not statistically significant. 
+
+###B. Heterogeneous Treatment Effect
+We want to see whether the treatment effect on female participants is different from male participants. This heterogeneous treatment effect can be tested using linear regression.
+
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+# HTE data cleanup
+
+
+compliers$Treated_dummy <- ifelse(compliers$assignment.x == "control" | compliers$assignment.x == "placebo", 0, 1)
+
+compliers$Female_dummy <- ifelse(compliers$Gender == "Female", 1, 0)
+
+compliers$"18-24" <- ifelse(compliers$Age == "18-24", 1, 0)
+compliers$"25-34" <- ifelse(compliers$Age == "25-34", 1, 0)
+compliers$"35-44" <- ifelse(compliers$Age == "35-44", 1, 0)
+compliers$"45-54" <- ifelse(compliers$Age == "45-54", 1, 0)
+compliers$"55+" <- ifelse(compliers$Age == "55+", 1, 0)
+
+```
+
+####i. Bottled Water Consumption
+The following model shows whether heterogeneous treatment effect on male participants versus female participants, on the outcome variable Bottled Water Consumption. Treated is a dummy binary variable that indicates group assignment (1 for treatment, 0 for non-treatment). Female is a binary variable that indicates whether the participant is male or female (1 for female, 0 for male). We also included the interaction term Treated * Female to measure the heterogenous treatment effect.
+
+$$ \text{Consumption} = B_0 + B_1Treated + B_2Female + B_3Treated * Female $$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+# HTE on bottled consumption and tap water confidence, by gender
+HTE_model1a <- lm(`Post bottled_ounces_total` ~ Treated_dummy, data = compliers)
+HTE_model1b <- lm(`Post bottled_ounces_total` ~ Treated_dummy + Female_dummy, data = compliers)
+HTE_model1c <- lm(`Post bottled_ounces_total` ~ Treated_dummy + Female_dummy + Treated_dummy*Female_dummy, data = compliers)
+
+HTE_model1a.se <- sqrt(diag(vcovHC(HTE_model1a)))
+HTE_model1b.se <- sqrt(diag(vcovHC(HTE_model1b)))
+HTE_model1c.se <- sqrt(diag(vcovHC(HTE_model1c)))
+
+stargazer(HTE_model1a, HTE_model1b, HTE_model1c, se = list(HTE_model1a.se, HTE_model1b.se, HTE_model1c.se), float=FALSE, header = FALSE,
+          title = "Heterogeneous Treatment Effect on Bottled Water Consumption in Ounces, Based on Gender",
+          covariate.labels = c("Treated", "Female", "Treated x Female"),
+          dep.var.labels = "Bottled Water Consumption")
+```
+
+Based on the data presented, the HTE estimate is 17.878, and is not statistically significant.
+
+####ii. Tap Water Confidence
+The following model shows whether heterogeneous treatment effect on male participants versus female participants, on tap water confidence. Once again, Treated is a dummy binary variable that indicates group assignment (1 for treatment, 0 for non-treatment). Female is a binary variable that indicates whether the participant is male or female (1 for female, 0 for male). We also included the interaction term Treated * Female to measure the heterogenous treatment effect.
+
+$$ \text{Confidence} = B_0 + B_1Treated + B_2Female + B_3Treated * Female $$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+# HTE for confidence, by gender
+HTE_model2a <- lm(`Post Tap water confidence` ~ Treated_dummy, data = compliers)
+HTE_model2b <- lm(`Post Tap water confidence` ~ Treated_dummy + Female_dummy, data = compliers)
+HTE_model2c <- lm(`Post Tap water confidence` ~ Treated_dummy + Female_dummy + Treated_dummy*Female_dummy, data = compliers)
+
+HTE_model2a.se <- sqrt(diag(vcovHC(HTE_model2a)))
+HTE_model2b.se <- sqrt(diag(vcovHC(HTE_model2b)))
+HTE_model2c.se <- sqrt(diag(vcovHC(HTE_model2c)))
+
+stargazer(HTE_model2a, HTE_model2b, HTE_model2c, float = FALSE, se = list(HTE_model2a.se, HTE_model2b.se, HTE_model2c.se), header = FALSE,
+          title = "Heterogeneous Treatment Effect on Tap Water Confidence, Based on Gender",
+          covariate.labels = c("Treated", "Female", "Treated x Female"),
+          dep.var.labels = "Tap Water Confidence")
+```
+
+In this model, the HTE estimate is 0.386, and not statistically significant. We noticed that both the Female coefficient and the intercept are statistically significant. Keep in mind that the mean outcome of female participants in the control group is also $B_0 + B_2$, which means the female participants had a significant change in confidence in tap water.
+
+###C. Overall OLS Regression
+####i. Bottled Water Consumption
+Past results indicated a lack of statistically significant results when looking at the Difference in Difference as well as the HTE. Out of curiosity, we want to account for every major variable in the OLS regression. 
+
+The following model predicts the bottled water consumption while accounting for the treatment, gender, tap water confidence before the treatment, and the age groups. Treated is a dummy binary variable that indicates group assignment (1 for treatment, 0 for non-treatment). Female is a binary variable that indicates whether the participant is male or female (1 for female, 0 for male). Pre Tap water Confidence is the participant's confidence in tap water measured in the pre-treatment survey. Age groups are a set of dummy variables that identifies the age bracket of the participant (only one of the dummy variables can be 1, the rest are 0)
+
+$$ \text{Consumption} = B_0 + B_1Treated + B_2Female + B_3\text{Pre Tap water Confidence} + B_{\text{4, 5, 6, 7}}AgeGroups $$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+# Regressions for Consumption
+m1 <- lm(data = compliers, `Post bottled_ounces_total` ~ Treated_dummy)
+m2 <- lm(data = compliers, `Post bottled_ounces_total` ~ Treated_dummy + Female_dummy)
+m3 <- lm(data = compliers, `Post bottled_ounces_total` ~ Treated_dummy + Female_dummy + compliers$`Pre Tap water confidence`)
+m4 <- lm(data = compliers, `Post bottled_ounces_total` ~ Treated_dummy + Female_dummy + compliers$`Pre Tap water confidence` +
+             `18-24` + `25-34` + `35-44` + `45-54`)
+
+m1.se <- sqrt(diag(vcovHC(m1)))
+m2.se <- sqrt(diag(vcovHC(m2)))
+m3.se <- sqrt(diag(vcovHC(m3)))
+m4.se <- sqrt(diag(vcovHC(m4)))
+
+stargazer(m1, m2, m3, m4, se = list(m1.se, m2.se, m3.se, m4.se), float=FALSE, header = FALSE, 
+          title = "OLS Regression of Bottled Water Consumption, in Ounces",
+          covariate.labels = c("Treated", "Female", "Tap water confidence, Pre", 
+                               "Age 18-24", "Age 25-34", "Age 35-44", "Age 45-54"),
+          dep.var.labels = "Bottled Water Consumption")
+```
+
+In this model, the average treatment effect is 1.454. It is interesting to note that the highest consumption change is from the age group of 45 to 54, with a coefficient of 36.087. Only the age groups 25-34 and 45-54 are statistically significant.
+
+####ii. Tap Water Confidence
+The following model predicts the tap water confidence while accounting for the treatment, gender, tap water confidence before the treatment, and the age groups. Treated is a dummy binary variable that indicates group assignment (1 for treatment, 0 for non-treatment). Female is a binary variable that indicates whether the participant is male or female (1 for female, 0 for male). Pre Tap water Confidence is the participant's confidence in tap water measured in the pre-treatment survey. Age groups are a set of dummy variables that identifies the age bracket of the participant (only one of the dummy variables can be 1, the rest are 0)
+
+$$ \text{Confidence} = B_0 + B_1Treated + B_2Female + B_3\text{Pre Bottled Consumption} + B_{\text{4, 5, 6, 7}}\text{Age Groups} $$
+
+```{r echo=FALSE, message=FALSE, warning=FALSE, results='asis'}
+# Regressions for Confidence
+m5 <- lm(data = compliers, `Post Tap water confidence` ~ Treated_dummy)
+m6 <- lm(data = compliers, `Post Tap water confidence` ~ Treated_dummy + Female_dummy)
+m7 <- lm(data = compliers, `Post Tap water confidence` ~ Treated_dummy + Female_dummy + `Pre bottled_ounces_total`)
+m8 <- lm(data = compliers, `Post Tap water confidence` ~ Treated_dummy + Female_dummy + `Pre bottled_ounces_total` +
+             `18-24` + `25-34` + `35-44` + `45-54`)
+m5.se <- sqrt(diag(vcovHC(m5)))
+m6.se <- sqrt(diag(vcovHC(m6)))
+m7.se <- sqrt(diag(vcovHC(m7)))
+m8.se <- sqrt(diag(vcovHC(m8)))
+
+stargazer(m5, m6, m7, m8, se = list(m5.se, m6.se, m7.se, m8.se), float=FALSE, header = FALSE,
+          title = "OLS Regression of Confidence Treatment Effect",
+          covariate.labels = c("Treated", "Female", "Bottled Consumption, Pre", 
+                               "Age 18-24", "Age 25-34", "Age 35-44", "Age 45-54"),
+          dep.var.labels = "Tap Water Confidence")
+```
+
+The average treatment effect for this model is 0.461, and not statistically significant. Once again (similar to our HTE model), the female participants in the control group had a statistically significant change.
+
+##V. Conclusion
+The team set out to determine the impacts of informing the public about the cleanliness and benefits of drinking tap water has on both the public’s perception of tap water and their bottled water drinking habits. The experiment did not yield statistically significant results. 
+
+Ultimately, the team’s findings on the impacts from the educational video were not statistically significant. The initial analysis seemed contradicting to our initial theory, with bottled water consumption increasing with treatment and the perception of tap water decreasing with treatment. This initial finding was discovered by calculation the CACE for both the treatment and placebo groups. 
+
+After further analysis, we concluded that the educational video did not have any statistically significant impact on either bottled water consumption or tap water perception. The analysis included running regression models to assess the heterogeneous treatment effect and the difference in difference effect since the study took place over a period of time (5 days). The team did not find any statistically significant effects to tap water perception or bottled water consumption, therefore we cannot reject the null hypothesis.
